@@ -44,6 +44,9 @@ calculator.add('-1');        // throws "negative numbers not allowed -1"
 - **12 tests** passing
 - **100% code coverage** achieved
 - Includes edge cases
+- 
+  <img width="800" height="533" alt="image" src="https://github.com/user-attachments/assets/c4e513a5-9cf3-4e98-83fa-25f1bd1fd684" />
+
 
 ## TDD Approach
 Built following strict TDD cycles:
