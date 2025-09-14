@@ -39,4 +39,22 @@ describe('StringCalculator', () => {
     expect(() => calculator.add('-1,-2')).toThrow('negative numbers not allowed -1,-2');
   });
 
+  
+  // cross-requirement tests 
+  test('should handle custom delimiter with many numbers', () => {
+    expect(calculator.add('//|\n1|2|3|4|5|6')).toBe(21);
+  });
+
+  test('should handle custom delimiter with newlines and commas', () => {
+    expect(calculator.add('//#\n1#2\n3,4')).toBe(10);
+  });
+
+  test('should throw exception for negative with custom delimiter', () => {
+    expect(() => calculator.add('//;\n1;-2;3')).toThrow('negative numbers not allowed -2');
+  });
+
+  test('should handle mixed delimiters with newlines', () => {
+    expect(calculator.add('1\n2,3\n4,5')).toBe(15);
+  });
+
 });
