@@ -3,6 +3,7 @@ export class StringCalculator {
     if (numbers === '') {
       return 0;
     }
-    throw new Error('Method not implemented');
+
+    return parseInt(numbers);
   }
 }
