@@ -6,7 +6,8 @@ export class StringCalculator {
       return 0;
     }
 
-    const numberArray = this.parseNumbers(numbers);
+    const { delimiter, numbersString } = this.extractDelimiterAndNumbers(numbers);
+    const numberArray = this.parseNumbers(numbersString, delimiter);
     return this.sumNumbers(numberArray);
   }
 
@@ -14,8 +15,18 @@ export class StringCalculator {
     return input === '';
   }
 
-  private parseNumbers(numbers: string): number[] {
-    return numbers.split(DELIMITERS).map(num => parseInt(num));
+  private extractDelimiterAndNumbers(input: string): { delimiter: RegExp, numbersString: string } {
+    if (input.startsWith('//')) {
+      const delimiterChar = input[2];
+      const numbersString = input.substring(4);
+      const delimiter = new RegExp(`[,\\n\\${delimiterChar}]`);
+      return { delimiter, numbersString };
+    }
+    return { delimiter: DELIMITERS, numbersString: input };
+  }
+
+  private parseNumbers(numbers: string, delimiter: RegExp): number[] {
+    return numbers.split(delimiter).map(num => parseInt(num));
   }
 
   private sumNumbers(numbers: number[]): number {
